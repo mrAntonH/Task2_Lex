@@ -13,8 +13,8 @@ private:
 	string Key;
 	int priority;
 	string classOf;
-	vector<string> InIt; // если элементы являются строками
-	vector<char> one; // если элементы являются символами
+	vector<string> InIt; 
+	vector<char> one; 
 public:
 	Automat(int prior, string c, string k) {
 		priority=prior;
@@ -48,9 +48,9 @@ pair<bool, int> maxString(Automat* M, string w, int p) {
 	flag = false;
 	int r= 0, Imax=-1;
 	int max=0;
-	if (M->get_InIt().size() > 0) {	// если автомат состоит из строк
-		for (int i = 0; i < M->get_InIt().size(); i++) { // проход по вектору
-			for (int j = p, k = 0; j < w.length() && k < M->get_InIt()[i].length(); j++, k++) {// проход по w
+	if (M->get_InIt().size() > 0) {	
+		for (int i = 0; i < M->get_InIt().size(); i++) { 
+			for (int j = p, k = 0; j < w.length() && k < M->get_InIt()[i].length(); j++, k++) {
 				if (M->get_InIt()[i][k] == w[j] && Imax == k - 1) {
 					max = j - p + 1;
 					Imax++;
@@ -62,9 +62,9 @@ pair<bool, int> maxString(Automat* M, string w, int p) {
 			if (r != 0)
 				flag = true;
 	}
-		if (M->get_one().size() > 0) { // если автомат состоит из символов
+		if (M->get_one().size() > 0) { 
 			Imax = p-1;
-			for (int j = p; j < w.length(); j++ ) { // проход по строке
+			for (int j = p; j < w.length(); j++ ) { 
 				for (int i = 0; i < M->get_one().size(); i++) {
 					if (M->get_one()[i] == w[j] && Imax==j-1) {
 						r=j-p+1;
@@ -78,7 +78,7 @@ pair<bool, int> maxString(Automat* M, string w, int p) {
 	pair<bool, int> res = make_pair(flag, r);
 	return res;
 }
-void lex (vector<Automat*> M) { // главная функция,на вход подается набор автоматов
+void lex (vector<Automat*> M) { 
 	string w;
 	ifstream in("input.txt");
 	ofstream out("output.txt");
@@ -133,7 +133,7 @@ int main() {
 	// WS
 	p.erase(p.begin(), p.end());
 	p.push_back(' ');
-	Automat* Z = new Automat(5, "бесконечный", "WS");
+	Automat* Z = new Automat(5, "Р±РµСЃРєРѕРЅРµС‡РЅС‹Р№", "WS");
 	Z->set_one(p);
 	lst.push_back(Z);
 	// KW
@@ -144,7 +144,7 @@ int main() {
 	prev.push_back("while");
 	prev.push_back("else");
 	prev.push_back("break");
-	Automat* M = new Automat( 10, "конечный", "KW");
+	Automat* M = new Automat( 10, "РєРѕРЅРµС‡РЅС‹Р№", "KW");
 	M->set_InIt(prev);
 	lst.push_back(M);
 	// ID
@@ -153,32 +153,32 @@ int main() {
 		p.push_back(i);
 	for (char i = 'a'; i < 'z'; i++)
 		p.push_back(i);
-	Automat* N = new Automat(  5, "бесконечный", "ID");
+	Automat* N = new Automat(  5, "Р±РµСЃРєРѕРЅРµС‡РЅС‹Р№", "ID");
 	N->set_one(p);
 	lst.push_back(N);
 	// NUM
 	vector<char> it;
 	for (char i = '0'; i <= '9'; i++)
 		it.push_back(i);
-	Automat* A= new Automat(5, "бесконечный", "NUM");
+	Automat* A= new Automat(5, "Р±РµСЃРєРѕРЅРµС‡РЅС‹Р№", "NUM");
 	A->set_one(it);
 	lst.push_back(A);
 	// COL
 	p.erase(p.begin(), p.end());
 	p.push_back(';');
-	Automat* B = new Automat( 5, "одноэлементный", "COL");
+	Automat* B = new Automat( 5, "РѕРґРЅРѕСЌР»РµРјРµРЅС‚РЅС‹Р№", "COL");
 	B->set_one(p);
 	lst.push_back(B);
 	// LPAR
 	p.erase(p.begin(), p.end());
 	p.push_back('(');
-	Automat* C = new Automat( 5, "одноэлементный", "LPAR");
+	Automat* C = new Automat( 5, "РѕРґРЅРѕСЌР»РµРјРµРЅС‚РЅС‹Р№", "LPAR");
 	C->set_one(p);
 	lst.push_back(C);
 	// RPAR
 	p.erase(p.begin(), p.end());
 	p.push_back(')');
-	Automat* D = new Automat( 5, "одноэлементный", "RPAR");
+	Automat* D = new Automat( 5, "РѕРґРЅРѕСЌР»РµРјРµРЅС‚РЅС‹Р№", "RPAR");
 	D->set_one(p);
 	lst.push_back(D);
 	// OP
@@ -193,25 +193,25 @@ int main() {
 	p.push_back('>');
 	p.push_back('>=');
 	p.push_back('<=');
-	Automat* E = new Automat( 5, "конечный", "OP");
+	Automat* E = new Automat( 5, "РєРѕРЅРµС‡РЅС‹Р№", "OP");
 	E->set_one(p);
 	lst.push_back(E);
 	// LBR
 	p.erase(p.begin(), p.end());
 	p.push_back('{');
-	Automat* G = new Automat( 5, "одноэлементный", "LBR");
+	Automat* G = new Automat( 5, "РѕРґРЅРѕСЌР»РµРјРµРЅС‚РЅС‹Р№", "LBR");
 	G->set_one(p);
 	lst.push_back(G);
 	// RBR
 	p.erase(p.begin(), p.end());
 	p.push_back('}');
-	Automat* H = new Automat( 5, "одноэлементный", "RBR");
+	Automat* H = new Automat( 5, "РѕРґРЅРѕСЌР»РµРјРµРЅС‚РЅС‹Р№", "RBR");
 	H->set_one(p);
 	lst.push_back(H);
 	// AS
 	p.erase(p.begin(), p.end());
 	p.push_back('=');
-	Automat* L = new Automat( 5, "одноэлементный", "AS");
+	Automat* L = new Automat( 5, "РѕРґРЅРѕСЌР»РµРјРµРЅС‚РЅС‹Р№", "AS");
 	L->set_one(p);
 	lst.push_back(L);
 	lex(lst);
