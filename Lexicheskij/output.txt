@@ -1,0 +1,35 @@
+< KW, begin >
+< WS, \n\r\t >
+< ID, a >
+< OP, = >
+< NUM, 25 >
+< COL, ; >
+< WS, \n\r\t >
+< ID, b >
+< OP, = >
+< NUM, 18 >
+<Error ¹ >
+< WS, \n\r\t >
+< KW, if >
+< LPAR, ( >
+< ID, a >
+< OP, <= >
+< ID, b >
+< RPAR, ) >
+< WS,   >
+< LBR, { >
+< ID, c >
+< OP, = >
+< NUM, 19 >
+< COL, ; >
+< RBR, } >
+< WS, \n\r\t >
+< KW, else >
+< WS,   >
+< LBR, { >
+< ID, c >
+< OP, = >
+< NUM, 75 >
+< RBR, } >
+< WS, \n\r\t >
+< KW, end >
